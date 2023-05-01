@@ -15,6 +15,6 @@ export const sessionOptions = {
 };
 
 export const corsOptions = {
-    origin: `http://localhost:${PORT}`,
+    origin: [`https://localhost:${PORT}/`, 'https://studio.apollographql.com'],
     credentials: true
 }

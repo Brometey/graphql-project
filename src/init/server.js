@@ -21,10 +21,19 @@ app.use(readToken)
 async function serverStart(){
 const server = new ApolloServer({typeDefs: schema, resolvers,dataSources: () => {
     return {starshipsAPI}
-}});
+}, 
+context: ({req,res})=> {
+return {req,res};
+},
+playground: {
+    settings: {
+        "request.credentials": "include"
+    }
+}
+});
 
 await server.start();
-server.applyMiddleware({app});
+server.applyMiddleware({app, cors: false});
 } 
 
 export {app,serverStart};
